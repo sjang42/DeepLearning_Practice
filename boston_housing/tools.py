@@ -13,7 +13,6 @@ def gradientDescent(X, Y, Theta, learningRate, numIter):
     for i in range(numIter):
         err = np.matmul(X, Theta) - Y
 
-        Theta = Theta - learningRate / m *\
-            learningRate * np.matmul(X.transpose(), err)
+        Theta = Theta - learningRate / m * np.matmul(X.transpose(), err)
 
     return (Theta)

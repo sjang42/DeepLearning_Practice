@@ -13,7 +13,7 @@ Theta = np.zeros((X.shape[1] + 1, 1))
 # # Mean normalization
 X_nor, mu, std = normalization(X)
 
-# append 0 column to X
+# append 1 column to X
 X_nor = np.concatenate((np.ones((X_nor.shape[0],1)), X), axis=1)
 # set hyper
 learningRate = 0.001
