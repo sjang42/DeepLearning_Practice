@@ -1,13 +1,15 @@
 import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.cm as cm
 import struct
 
 # load mnist data
 
-def load_mnist(num_image):
-    f_image = open('./data/train-images.idx3-ubyte','rb')
-    f_label = open('./data/train-labels.idx1-ubyte','rb')
+def load_mnist(num_image, path_to_data, is_test=False):
+    if (is_test):
+        f_image = open(path_to_data + '/t10k-images.idx3-ubyte','rb')
+        f_label = open(path_to_data + '/t10k-labels.idx1-ubyte','rb')
+    else:
+        f_image = open(path_to_data + '/train-images.idx3-ubyte','rb')
+        f_label = open(path_to_data + '/train-labels.idx1-ubyte','rb')
 
     X = np.zeros((10000, 28*28))
     Y = np.zeros((10000, 10))
@@ -32,3 +34,14 @@ def load_mnist(num_image):
     f_image.close()
     f_label.close()
     return X, Y
+
+
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+
+def predict(X, Theta):
+    H = sigmoid(np.matmul(X, np.transpose(Theta)))
+    pred = np.argmax(H, axis=1)
+
+    return pred
